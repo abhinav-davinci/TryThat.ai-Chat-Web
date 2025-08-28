@@ -1,23 +1,36 @@
 import React, { useRef } from 'react'
 import { Send, Paperclip } from 'lucide-react'
 
-const ChatInput = ({ inputValue, setInputValue, handleSendMessage, handleKeyPress }) => {
+const ChatInput = ({ inputValue, setInputValue, handleSendMessage, handleKeyDown, hero = false }) => {
   const inputRef = useRef(null)
 
+  const handleAutoResize = (e) => {
+    const el = e.target
+    el.style.height = 'auto'
+    el.style.overflowY = 'hidden'
+    const maxHeight = 300
+    const newHeight = Math.min(el.scrollHeight, maxHeight)
+    el.style.height = `${newHeight}px`
+    if (el.scrollHeight > maxHeight) {
+      el.style.overflowY = 'auto'
+    }
+  }
+
   return (
-    <div className="border-t border-neutral-200 dark:border-neutral-800 p-4">
-      <div className="max-w-3xl mx-auto">
+    <div className={`${hero ? 'border-t-0 py-8' : 'border-t border-neutral-200 dark:border-neutral-800 p-4'}`}>
+      <div className="max-w-4xl mx-auto">
         <div className="relative">
           <textarea
             ref={inputRef}
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onChange={(e) => { setInputValue(e.target.value); handleAutoResize(e) }}
+            onKeyDown={handleKeyDown}
             placeholder="Ask about real estate properties, market trends, mortgages, or any property-related questions..."
-            className="w-full resize-none border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#0f1525] rounded-2xl px-12 py-3 pr-24 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-transparent text-sm leading-relaxed text-neutral-800 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500"
+            className="w-full resize-none overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-[#0f1525] rounded-2xl px-14 py-4 pr-28 focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-transparent text-[15px] leading-relaxed text-neutral-800 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 shadow-subtle"
             style={{
-              minHeight: '48px',
-              maxHeight: '120px'
+              minHeight: '120px',
+              maxHeight: '300px',
+              overflow: 'hidden'
             }}
             rows={1}
           />

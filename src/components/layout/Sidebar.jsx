@@ -40,8 +40,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => (
       {/* New Chat Button */}
       <div className="p-4">
         <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900/40 transition-colors">
-          <Plus className="w-4 h-4 text-neutral-600" />
-          <span className={`text-neutral-700 dark:text-neutral-200 ${sidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-0'} transition-opacity duration-200`}>New conversation</span>
+          <Plus className="w-4 h-4 text-primary-600" />
+          <span className={`text-center text-primary-600 dark:text-primary-400 font-medium ${sidebarOpen ? 'opacity-100' : 'opacity-0 lg:hidden'} transition-opacity duration-200`}>New Chat</span>
         </button>
       </div>
       

@@ -16,11 +16,29 @@ const ChatInterface = ({
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
-  const handleKeyPress = (e) => {
+  const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       handleSendMessage()
     }
+  }
+
+  const hasUserMessage = messages.some(m => m.type === 'user')
+
+  if (!hasUserMessage) {
+    return (
+      <div className="flex-1 flex items-center justify-center px-4">
+        <div className="w-full max-w-3xl">
+          <ChatInput 
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            handleSendMessage={handleSendMessage}
+            handleKeyDown={handleKeyDown}
+            hero
+          />
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -31,19 +49,16 @@ const ChatInterface = ({
           {messages.map((message) => (
             <MessageBubble key={message.id} message={message} />
           ))}
-          
           {isTyping && <TypingIndicator />}
-          
           <div ref={messagesEndRef} />
         </div>
       </div>
-      
       {/* Input Area */}
       <ChatInput 
         inputValue={inputValue}
         setInputValue={setInputValue}
         handleSendMessage={handleSendMessage}
-        handleKeyPress={handleKeyPress}
+        handleKeyDown={handleKeyDown}
       />
     </>
   )
