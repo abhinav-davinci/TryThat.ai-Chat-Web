@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens inspired by Claude with custom brand colors */
+:root {
+  --color-bg: #0b0f19;         /* deep slate for app background */
+  --color-panel: #0f1525;      /* panel bg */
+  --color-elevated: #111827;   /* elevated cards */
+  --color-border: #1f2937;     /* subtle borders */
+  --color-text: #e5e7eb;       /* base text */
+  --color-muted: #9ca3af;      /* secondary text */
+  --color-primary: #5b73f2;    /* brand primary */
+  --color-accent: #6b63f6;     /* brand secondary */
+}
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    @apply antialiased bg-white text-neutral-800; /* light by default */
+    font-feature-settings: "cv02","cv03","cv04","cv11";
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white border border-neutral-200 rounded-xl shadow-subtle;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700;
+  }
+  .btn-ghost {
+    @apply btn hover:bg-neutral-100;
+  }
+}
+
+@layer utilities {
+  .container-app {
+    @apply mx-auto max-w-6xl px-4;
+  }
+}
+
