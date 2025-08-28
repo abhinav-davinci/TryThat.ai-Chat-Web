@@ -14,12 +14,23 @@
   --color-accent: #6b63f6;     /* brand secondary */
 }
 
+.dark {
+  --color-bg: #0b0f19;
+  --color-panel: #0f1525;
+  --color-elevated: #111827;
+  --color-border: #1f2937;
+  --color-text: #e5e7eb;
+  --color-muted: #9ca3af;
+  --color-primary: #5b73f2;
+  --color-accent: #6b63f6;
+}
+
 @layer base {
   html, body, #root {
     height: 100%;
   }
   body {
-    @apply antialiased bg-white text-neutral-800; /* light by default */
+    @apply antialiased bg-white text-neutral-800 dark:bg-[#0b0f19] dark:text-neutral-200; /* light + dark */
     font-feature-settings: "cv02","cv03","cv04","cv11";
   }
 }

@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const {
     messages,
     inputValue,
@@ -15,14 +16,14 @@ function App() {
   } = useChat()
 
   return (
-    <div className="flex h-screen bg-white overflow-hidden">
+    <div className="flex h-screen bg-white dark:bg-[#0b0f19] overflow-hidden">
       <Sidebar 
-        sidebarOpen={sidebarOpen} 
-        setSidebarOpen={setSidebarOpen} 
+        sidebarOpen={sidebarOpen && !sidebarCollapsed} 
+        setSidebarOpen={(open) => { setSidebarOpen(open); if (!open) setSidebarCollapsed(true) }} 
       />
       
       <div className="flex-1 flex flex-col">
-        <Header setSidebarOpen={setSidebarOpen} />
+        <Header setSidebarOpen={(open) => { setSidebarOpen(open); setSidebarCollapsed(false) }} />
         
         <ChatInterface
           messages={messages}

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     './index.html',
     './public/index.html',
@@ -12,29 +13,30 @@ export default {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Arial', 'sans-serif']
       },
       colors: {
+        // Brand palette extracted from logo (blue primary)
         primary: {
-          50: '#f4f6ff',
-          100: '#e9edff',
-          200: '#cfd8ff',
-          300: '#a6b6ff',
-          400: '#7b91ff',
-          500: '#5b73f2',
-          600: '#4a5dd6',
-          700: '#3e4db3',
-          800: '#333f90',
-          900: '#2a346f'
+          50: '#eef2fb',
+          100: '#d9e3f7',
+          200: '#b3c7ef',
+          300: '#8dabe7',
+          400: '#5b87d6',
+          500: '#2e6eb6',
+          600: '#245a96',
+          700: '#1d4a7b',
+          800: '#163a61',
+          900: '#112b47'
         },
         secondary: {
-          50: '#f6f5ff',
-          100: '#eeecff',
-          200: '#d6d2ff',
-          300: '#b1aaff',
-          400: '#8a81ff',
-          500: '#6b63f6',
-          600: '#564fda',
-          700: '#4641b7',
-          800: '#393694',
-          900: '#2f2d75'
+          50: '#f5f7fa',
+          100: '#eaeef5',
+          200: '#d6dbe6',
+          300: '#b4bdcc',
+          400: '#8b98ab',
+          500: '#6b7e94',
+          600: '#586778',
+          700: '#475360',
+          800: '#39424d',
+          900: '#2d343d'
         }
       },
       borderRadius: {

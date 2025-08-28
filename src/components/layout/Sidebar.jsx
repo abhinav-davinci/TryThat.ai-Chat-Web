@@ -1,6 +1,8 @@
 import React from 'react'
 import { Plus, Home, MessageCircle, Search, Settings, HelpCircle } from 'lucide-react'
 
+import { ChevronLeft } from 'lucide-react'
+
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => (
   <>
     {/* Mobile overlay */}
@@ -12,27 +14,34 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => (
     )}
     
     <div className={`
-      fixed lg:relative lg:translate-x-0 transition-transform duration-300 ease-in-out z-50
-      ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-      w-64 h-full bg-white border-r border-neutral-200 flex flex-col
+      fixed lg:relative lg:translate-x-0 transition-[width,transform] duration-300 ease-in-out z-50
+      ${sidebarOpen ? 'translate-x-0 lg:w-64' : '-translate-x-full lg:translate-x-0 lg:w-16'}
+      w-64 h-full bg-white dark:bg-[#0f1525] border-r border-neutral-200 dark:border-neutral-800 flex flex-col
     `}>
       {/* Sidebar Header */}
-      <div className="p-4 border-b border-neutral-200 bg-white/60 backdrop-blur">
-        <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br from-primary-500 to-secondary-500">
-            <Home className="w-5 h-5 text-white" />
+      <div className="p-4 border-b border-neutral-200 dark:border-neutral-800 bg-white/60 dark:bg-transparent backdrop-blur">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <img src="/logo.png" alt="TryThat.ai" className={`h-14 w-auto object-contain ${sidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-100'} transition-opacity duration-200`} />
+            <span className={`font-semibold text-lg text-neutral-800 dark:text-neutral-100 ${sidebarOpen ? 'opacity-100' : 'opacity-0 lg:hidden'} transition-opacity duration-200`}>
+             
+            </span>
           </div>
-          <span className="font-semibold text-lg text-neutral-800">
-            TryThat.ai
-          </span>
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="hidden lg:flex p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+            aria-label="Collapse sidebar"
+          >
+            <ChevronLeft className={`w-4 h-4 text-neutral-600 dark:text-neutral-300 transition-transform ${sidebarOpen ? '' : 'rotate-180'}`} />
+          </button>
         </div>
       </div>
       
       {/* New Chat Button */}
       <div className="p-4">
-        <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg border border-neutral-200 hover:bg-neutral-50 transition-colors">
+        <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900/40 transition-colors">
           <Plus className="w-4 h-4 text-neutral-600" />
-          <span className="text-neutral-700">New conversation</span>
+          <span className={`text-neutral-700 dark:text-neutral-200 ${sidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-0'} transition-opacity duration-200`}>New conversation</span>
         </button>
       </div>
       
@@ -43,10 +52,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => (
         </div>
         <div className="space-y-1">
           {['Property search in Downtown', 'Mortgage calculation help', 'Investment analysis'].map((chat, i) => (
-            <button key={i} className="w-full text-left px-3 py-2 rounded-lg hover:bg-neutral-50 transition-colors">
+            <button key={i} className="w-full text-left px-3 py-2 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900/40 transition-colors">
               <div className="flex items-center space-x-3">
                 <MessageCircle className="w-4 h-4 flex-shrink-0 text-neutral-400" />
-                <span className="text-sm truncate text-neutral-700">{chat}</span>
+                <span className={`text-sm truncate text-neutral-700 dark:text-neutral-200 ${sidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-0'} transition-opacity duration-200`}>{chat}</span>
               </div>
             </button>
           ))}
@@ -54,15 +63,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => (
       </div>
       
       {/* Sidebar Footer */}
-      <div className="border-t border-neutral-200 p-4 space-y-1">
+      <div className="border-t border-neutral-200 dark:border-neutral-800 p-4 space-y-1">
         {[
           { icon: Search, label: 'Property Search' },
           { icon: Settings, label: 'Settings' },
           { icon: HelpCircle, label: 'Help & Support' }
         ].map(({ icon: Icon, label }, i) => (
-          <button key={i} className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-neutral-50 transition-colors">
-            <Icon className="w-4 h-4 text-neutral-600" />
-            <span className="text-sm text-neutral-700">{label}</span>
+          <button key={i} className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900/40 transition-colors">
+            <Icon className="w-4 h-4 text-neutral-600 dark:text-neutral-300" />
+            <span className={`text-sm text-neutral-700 dark:text-neutral-200 ${sidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-0'} transition-opacity duration-200`}>{label}</span>
           </button>
         ))}
       </div>
