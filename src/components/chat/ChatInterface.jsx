@@ -29,6 +29,13 @@ const ChatInterface = ({
     return (
       <div className="flex-1 flex items-center justify-center px-4">
         <div className="w-full max-w-3xl">
+          <div className="text-center mb-6">
+            <h1 className="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-neutral-100">Hey There, Welcome Trythat.ai</h1>
+            <p className="mt-2 text-neutral-600 dark:text-neutral-300">Your Smartest AI Property Advisor</p>
+            <div className="mt-4">
+              <button className="inline-flex items-center gap-2 rounded-lg bg-primary-600 text-white px-4 py-2 text-sm font-medium hover:bg-primary-700 transition-colors">Upgrade</button>
+            </div>
+          </div>
           <ChatInput 
             inputValue={inputValue}
             setInputValue={setInputValue}

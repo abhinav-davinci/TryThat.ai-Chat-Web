@@ -39,17 +39,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => (
       
       {/* New Chat Button */}
       <div className="p-4">
-        <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900/40 transition-colors">
-          <Plus className="w-4 h-4 text-primary-600" />
-          <span className={`text-center text-primary-600 dark:text-primary-400 font-medium ${sidebarOpen ? 'opacity-100' : 'opacity-0 lg:hidden'} transition-opacity duration-200`}>New Chat</span>
+        <button className="group w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-900/40 transition-colors">
+          <Plus className={`${sidebarOpen ? 'w-4 h-4' : 'w-6 h-6'} text-primary-600 transform transition-transform duration-200 ease-out group-hover:rotate-12 group-hover:scale-110`} />
+          <span className={`text-primary-600 dark:text-primary-400 font-medium ${sidebarOpen ? 'inline' : 'hidden'}`}>New Chat</span>
         </button>
       </div>
       
       {/* Chat History */}
       <div className="flex-1 px-4">
-        <div className="text-xs font-medium mb-2 text-neutral-500">
-          Recent conversations
-        </div>
+        {sidebarOpen && (
+          <div className="text-xs font-medium mb-2 text-neutral-500">
+            Recent conversations
+          </div>
+        )}
         <div className="space-y-1">
           {['Property search in Downtown', 'Mortgage calculation help', 'Investment analysis'].map((chat, i) => (
             <button key={i} className="w-full text-left px-3 py-2 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900/40 transition-colors">

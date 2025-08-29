@@ -17,7 +17,7 @@ const ChatInput = ({ inputValue, setInputValue, handleSendMessage, handleKeyDown
   }
 
   return (
-    <div className={`${hero ? 'border-t-0 py-8' : 'border-t border-neutral-200 dark:border-neutral-800 p-4'}`}>
+    <div className={`${hero ? 'border-t-0 py-8' : 'p-4'}`}>
       <div className="max-w-4xl mx-auto">
         <div className="relative">
           <textarea
