@@ -81,6 +81,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <span className={`text-sm text-neutral-700 dark:text-neutral-200 ${sidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-0'} transition-opacity duration-200`}>{label}</span>
             </button>
           ))}
+          {/* Free tier upsell (text only) */}
+          <div className="w-full px-3 py-2">
+            <span className={`text-sm text-neutral-600 dark:text-neutral-300 ${sidebarOpen ? 'opacity-100' : 'opacity-0 lg:opacity-0'} transition-opacity duration-200`}>
+              Free User - <span className="text-primary-600 dark:text-primary-400 font-medium">Upgrade</span>
+            </span>
+          </div>
         </div>
       </div>
     </>
