@@ -8,15 +8,21 @@ import './styles/global.css'
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || ''
 
+const AppTree = (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="/signup" element={<Signup />} />
+    </Routes>
+  </BrowserRouter>
+)
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId={googleClientId}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
-      </BrowserRouter>
-    </GoogleOAuthProvider>
+    {googleClientId ? (
+      <GoogleOAuthProvider clientId={googleClientId}>{AppTree}</GoogleOAuthProvider>
+    ) : (
+      AppTree
+    )}
   </React.StrictMode>,
 )

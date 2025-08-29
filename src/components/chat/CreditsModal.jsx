@@ -32,8 +32,8 @@ const CreditsModal = ({ open, onCancel, onRegister }) => {
         </div>
 
         <div className="flex items-center justify-between gap-3">
-          <button onClick={onCancel} className="px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-900/40">Cancel</button>
-          <button onClick={onRegister} className="px-4 py-2 rounded-lg bg-primary-600 text-white hover:opacity-90">Register Now</button>
+          <button onClick={onCancel} className="px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-900/40">Not now</button>
+          <button onClick={onRegister} className="px-4 py-2 rounded-lg bg-primary-600 text-white hover:bg-primary-700 shadow-subtle">Register Now</button>
         </div>
       </div>
     </Modal>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ChatInterface } from './components/chat'
 import { Header, Sidebar } from './components/layout'
 import { useChat } from './hooks/useChat'
@@ -13,6 +13,14 @@ function App() {
     isTyping,
     handleSendMessage
   } = useChat()
+
+  // Testing behavior: treat every refresh as free-tier user with 0 used
+  useEffect(() => {
+    try {
+      localStorage.removeItem('ttai_registered')
+      localStorage.setItem('free_tier_used', '0')
+    } catch {}
+  }, [])
 
   return (
     <div className="flex h-screen bg-white dark:bg-[#0b0f19] overflow-hidden">

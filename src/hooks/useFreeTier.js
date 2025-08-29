@@ -6,11 +6,14 @@ const FREE_LIMIT = 3
 export const useFreeTier = () => {
   const [usedCount, setUsedCount] = useLocalStorage('free_tier_used', 0)
   const [modalOpen, setModalOpen] = useState(false)
+  const [isRegistered] = useLocalStorage('ttai_registered', false)
   const isExhausted = useMemo(() => usedCount >= FREE_LIMIT, [usedCount])
 
   const attemptConsume = () => {
-    if (usedCount < FREE_LIMIT) {
-      setUsedCount(usedCount + 1)
+    if (isRegistered) return true
+    const current = Number(usedCount) || 0
+    if (current < FREE_LIMIT) {
+      setUsedCount(prev => (Number(prev) || 0) + 1)
       return true
     }
     setModalOpen(true)

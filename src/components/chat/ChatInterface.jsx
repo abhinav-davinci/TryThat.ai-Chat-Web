@@ -24,9 +24,8 @@ const ChatInterface = ({
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
-      if (attemptConsume()) {
-        handleSendMessage()
-      }
+      if (!inputValue.trim()) return
+      if (attemptConsume()) handleSendMessage()
     }
   }
 
@@ -34,24 +33,31 @@ const ChatInterface = ({
 
   if (!hasUserMessage) {
     return (
-      <div className="flex-1 flex items-center justify-center px-4">
-        <div className="w-full max-w-3xl">
-          <div className="text-center mb-6">
-            <h1 className="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-neutral-100">Hey There, Welcome To Trythat.ai</h1>
-            <p className="mt-2 text-neutral-600 dark:text-neutral-300">Your Smartest AI Property Advisor</p>
-            <div className="mt-4">
-            Free User - <span className="text-primary-600 dark:text-primary-400 font-medium"><a href="https://trythat.ai/pricing" target="_blank" rel="noopener noreferrer">Upgrade</a></span>
+      <>
+        <CreditsModal 
+          open={modalOpen}
+          onCancel={() => setModalOpen(false)}
+          onRegister={() => { setModalOpen(false); navigate('/signup') }}
+        />
+        <div className="flex-1 flex items-center justify-center px-4">
+          <div className="w-full max-w-3xl">
+            <div className="text-center mb-6">
+              <h1 className="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-neutral-100">Hey There, Welcome To Trythat.ai</h1>
+              <p className="mt-2 text-neutral-600 dark:text-neutral-300">Your Smartest AI Property Advisor</p>
+              <div className="mt-4">
+              Free User - <span className="text-primary-600 dark:text-primary-400 font-medium"><a href="https://trythat.ai/pricing" target="_blank" rel="noopener noreferrer">Upgrade</a></span>
+              </div>
             </div>
+            <ChatInput 
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+              handleSendMessage={() => { if (!inputValue.trim()) return; if (attemptConsume()) { handleSendMessage() } }}
+              handleKeyDown={handleKeyDown}
+              hero
+            />
           </div>
-          <ChatInput 
-            inputValue={inputValue}
-            setInputValue={setInputValue}
-            handleSendMessage={() => { if (attemptConsume()) { handleSendMessage() } }}
-            handleKeyDown={handleKeyDown}
-            hero
-          />
         </div>
-      </div>
+      </>
     )
   }
 
@@ -76,7 +82,7 @@ const ChatInterface = ({
       <ChatInput 
         inputValue={inputValue}
         setInputValue={setInputValue}
-        handleSendMessage={() => { if (attemptConsume()) { handleSendMessage() } }}
+        handleSendMessage={() => { if (!inputValue.trim()) return; if (attemptConsume()) { handleSendMessage() } }}
         handleKeyDown={handleKeyDown}
       />
     </>
