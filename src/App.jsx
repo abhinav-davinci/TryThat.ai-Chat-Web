@@ -2,11 +2,10 @@ import React from 'react'
 import { ChatInterface } from './components/chat'
 import { Header, Sidebar } from './components/layout'
 import { useChat } from './hooks/useChat'
-import { useState } from 'react'
+import { useLocalStorage } from './hooks/useLocalStorage'
 
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useLocalStorage('sidebarOpen', true) // Use localStorage to remember sidebar state
   const {
     messages,
     inputValue,
@@ -18,12 +17,12 @@ function App() {
   return (
     <div className="flex h-screen bg-white dark:bg-[#0b0f19] overflow-hidden">
       <Sidebar 
-        sidebarOpen={sidebarOpen && !sidebarCollapsed} 
-        setSidebarOpen={(open) => { setSidebarOpen(open); if (!open) setSidebarCollapsed(true) }} 
+        sidebarOpen={sidebarOpen} 
+        setSidebarOpen={setSidebarOpen} 
       />
       
       <div className="flex-1 flex flex-col">
-        <Header setSidebarOpen={(open) => { setSidebarOpen(open); setSidebarCollapsed(false) }} />
+        <Header setSidebarOpen={setSidebarOpen} />
         
         <ChatInterface
           messages={messages}
