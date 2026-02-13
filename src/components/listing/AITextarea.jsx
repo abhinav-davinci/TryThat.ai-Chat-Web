@@ -3,7 +3,6 @@ import { useAISuggestions } from '../../hooks/useAISuggestions'
 import GhostTextOverlay from './GhostTextOverlay'
 import AISuggestionPopover from './AISuggestionPopover'
 import SuggestionChips from './SuggestionChips'
-import SparkleIcon from '../ui/SparkleIcon'
 import { getSuggestionChips } from '../../services/propertyConstants'
 
 export default function AITextarea({ value, onChange, aiContext, placeholder, id, error }) {
@@ -113,15 +112,15 @@ export default function AITextarea({ value, onChange, aiContext, placeholder, id
           </span>
         )}
 
-        {/* Sparkle button */}
+        {/* AI generate button */}
         <button
           type="button"
           onClick={generateOptions}
-          className="absolute right-3 top-3 z-20 p-1 rounded-md hover:bg-[#E8F1FF] transition-colors focus:outline-none focus:ring-2 focus:ring-[#A3C7FF]"
+          className="absolute right-2.5 top-2.5 z-20 rounded-md hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-[#A3C7FF]"
           aria-label="Generate AI description"
           title="Generate AI description"
         >
-          <SparkleIcon size={18} />
+          <img src="/ai-icon.png" alt="" width={24} height={24} className="block" />
         </button>
 
         {/* Suggestion popover */}

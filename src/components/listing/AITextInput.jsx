@@ -2,7 +2,6 @@ import { useRef, useCallback } from 'react'
 import { useAISuggestions } from '../../hooks/useAISuggestions'
 import GhostTextOverlay from './GhostTextOverlay'
 import AISuggestionPopover from './AISuggestionPopover'
-import SparkleIcon from '../ui/SparkleIcon'
 
 export default function AITextInput({ value, onChange, aiContext, placeholder, id, error }) {
   const inputRef = useRef(null)
@@ -90,15 +89,15 @@ export default function AITextInput({ value, onChange, aiContext, placeholder, i
         </span>
       )}
 
-      {/* Sparkle button */}
+      {/* AI generate button */}
       <button
         type="button"
         onClick={generateOptions}
-        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 p-1 rounded-md hover:bg-[#E8F1FF] transition-colors focus:outline-none focus:ring-2 focus:ring-[#A3C7FF]"
+        className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 rounded-md hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-[#A3C7FF]"
         aria-label="Generate AI suggestions"
         title="Generate AI suggestions"
       >
-        <SparkleIcon size={18} />
+        <img src="/ai-icon.png" alt="" width={24} height={24} className="block" />
       </button>
 
       {/* Suggestion popover */}
